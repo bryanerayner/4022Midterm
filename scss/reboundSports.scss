@@ -1,5 +1,49 @@
+
+.left
+{
+	float:left;
+}
+
+
+
 .MainNav, nav.left
 {
 	background-color:#2e5f73;
 	width:250px;
+}
+
+
+.grid.flex
+{
+	width: calc(100% - 250px);
+}
+
+
+
+
+
+//Headers
+
+
+$header-product-h1-background-color:#ebebeb;
+
+
+
+header.product
+{
+	width: 100%;
+	height: 132px;
+
+	h1
+	{
+		float:left;
+		margin: 30px 12px;
+		padding:14px 23px;
+		background-color:$header-product-h1-background-color;
+		opacity: 0.9;
+	}
+
+
+
+
 }
