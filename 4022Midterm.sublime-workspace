@@ -1,0 +1,574 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"back",
+				"background-image"
+			],
+			[
+				"cupc",
+				"cupcakeId"
+			],
+			[
+				"price",
+				"price"
+			],
+			[
+				"php",
+				"php"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"ref",
+				"reference	(?)"
+			],
+			[
+				"GameBox",
+				"GameBox_View	(?)"
+			],
+			[
+				"locat",
+				"locationUpdate"
+			],
+			[
+				"pic",
+				"pieceView	{}"
+			],
+			[
+				"piec",
+				"pieceView	(?)"
+			],
+			[
+				"locati",
+				"locationUpdate	(?)"
+			],
+			[
+				"setup",
+				"setupGame"
+			],
+			[
+				"New",
+				"NestedView"
+			],
+			[
+				"Sandbo",
+				"SandboxApp"
+			],
+			[
+				"refere",
+				"references"
+			],
+			[
+				"alp",
+				"alphaToNum(letter)"
+			],
+			[
+				"game",
+				"gameBoard	{}"
+			],
+			[
+				"baseC",
+				"baseCoords	{}"
+			],
+			[
+				"bseC",
+				"baseCoords	{}"
+			],
+			[
+				"a",
+				"alphaToNum(letter)"
+			],
+			[
+				"E",
+				"Empty"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"te",
+				"template"
+			],
+			[
+				"Te",
+				"Template_View"
+			],
+			[
+				"Content",
+				"Content_View"
+			],
+			[
+				"Cell",
+				"Cell_View"
+			],
+			[
+				"mo",
+				"mochaTest"
+			],
+			[
+				"world",
+				"worldDimensions	{}"
+			],
+			[
+				"div",
+				"divide"
+			],
+			[
+				"si",
+				"sightAngle	(num)"
+			],
+			[
+				"wor",
+				"worldDimensions	{}"
+			],
+			[
+				"dr",
+				"draw()"
+			],
+			[
+				"up",
+				"update()"
+			],
+			[
+				"upd",
+				"updatePointer	(num)"
+			],
+			[
+				"dra",
+				"drawPointer	(num)"
+			],
+			[
+				"avoi",
+				"avoidanceAngle"
+			],
+			[
+				"angl",
+				"angle"
+			],
+			[
+				"ang",
+				"angle"
+			],
+			[
+				"av",
+				"average"
+			],
+			[
+				"isAr",
+				"isArray(n)"
+			],
+			[
+				"uni",
+				"uniqueId(n)"
+			],
+			[
+				"Boid",
+				"Boid(div, position)"
+			],
+			[
+				"Boi",
+				"BoidGroup()"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"re",
+				"requestAnimationFrame"
+			],
+			[
+				"style",
+				"stylePrefix"
+			],
+			[
+				"sty",
+				"stylePrefix(style, key, value)"
+			],
+			[
+				"rotat",
+				"rotationCSS	(str)"
+			],
+			[
+				"angle",
+				"angleBetween"
+			],
+			[
+				"play",
+				"playState"
+			],
+			[
+				"onload",
+				"onload"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 5850,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "scss/reboundSports.scss",
+			"settings":
+			{
+				"buffer_size": 2432,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 187.0,
+		"selected_items":
+		[
+			[
+				"Package Control: r",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove p",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"Instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/php/4057_dynamic_scripting/midterm/images/Cupcake.png",
+		"/Applications/MAMP/htdocs/php/4057_dynamic_scripting/midterm/partials/nav.php",
+		"/Applications/MAMP/htdocs/php/4057_dynamic_scripting/midterm/partials/header.php",
+		"/Applications/MAMP/conf/php5.4.10/php.ini",
+		"/Applications/MAMP/conf/apache/original/httpd.conf",
+		"/Users/bryanerayner/GitHub/OmniChess/js/position.js",
+		"/Users/bryanerayner/GitHub/GridFu/test/Grid/coffee/tests.coffee",
+		"/Users/bryanerayner/GitHub/GridFu/libraries/backbone.js",
+		"/Users/bryanerayner/GitHub/GridFu/src/coffee/layout.coffee",
+		"/Users/bryanerayner/GitHub/GridFu/Gruntfile.coffee",
+		"/Users/bryanerayner/GitHub/GridFu/package.json",
+		"/Users/bryanerayner/GitHub/GridFu/test/Browser/Layout/coffee/layout.coffee",
+		"/Users/bryanerayner/GitHub/GridFu/gruntfile.coffee",
+		"/Users/bryanerayner/GitHub/GridFu/test/Browser/Grid/tests.html",
+		"/Users/bryanerayner/GitHub/GridFu/test/coffee/tests.coffee",
+		"/Users/bryanerayner/Library/Application Support/Sublime Text 2/Packages/TernJS/TernJS.sublime-settings",
+		"/Users/bryanerayner/Documents/IMD Semester 3/4022 Web Services/Exercise 1/js/libraries/underscore.min.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Applications/MAMP/htdocs/bryanerayner/sites/all/themes/bryanerayner",
+			"/Users/bryanerayner/GitHub/OmniChess/libs/polyfills"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"75",
+			"1",
+			"000",
+			"#",
+			"hobos",
+			"main-menu",
+			"#\"",
+			"Error",
+			"variableS_order",
+			"1\n\n",
+			"1",
+			"TC in",
+			"Scene",
+			"polyfilter_scriptpath",
+			"before",
+			"this.pieces",
+			"sandbox: t.sandbox,",
+			"location:location",
+			"/summary",
+			"selected",
+			"click_ev",
+			"enter",
+			"selected",
+			"Piece_View",
+			"}\n",
+			".piece",
+			"white",
+			"&.",
+			"pawn",
+			"condition",
+			".lookUp",
+			"Start",
+			"		\n",
+			"square",
+			"8",
+			"7",
+			"var",
+			"pawnLocations",
+			"Piece.extend(\n{\n	initialize:function()\n",
+			"this",
+			"type:",
+			"Game",
+			"x",
+			"ranks",
+			"Board_View",
+			"location",
+			"				\n",
+			"new",
+			",\n",
+			"\"\"",
+			"Move",
+			"commit",
+			"+",
+			"Layout.Cell",
+			"Row",
+			"Cell",
+			"Template",
+			"Template ",
+			"Template",
+			"LayoutCell",
+			"grint",
+			"angle - (this",
+			"V",
+			"isNan",
+			");",
+			"acceleration.y",
+			"x",
+			"div",
+			"x",
+			"this.position",
+			"x",
+			"*",
+			"this",
+			"vec",
+			",",
+			"x",
+			"- V",
+			"+",
+			"acceleration",
+			"div",
+			"addClass",
+			"removeClass",
+			"case ",
+			"case",
+			"playState",
+			"audioPlayers",
+			"data-trackName"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 5850,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3132,
+								3132
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 726.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "scss/reboundSports.scss",
+					"settings":
+					{
+						"buffer_size": 2432,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1498,
+								1498
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1917.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 187.0,
+	"status_bar_visible": true
+}

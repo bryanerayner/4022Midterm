@@ -18,38 +18,61 @@
 header.product {
   width: 100%;
   height: 132px;
+  padding-top: 30px;
   background-size: cover;
 }
-/* line 45, ../scss/reboundSports.scss */
+/* line 46, ../scss/reboundSports.scss */
 header.product h1 {
   float: left;
-  margin: 30px 12px;
+  margin: 0px 12px;
   padding: 14px 23px;
   background-color: #ebebeb;
   opacity: 0.9;
 }
-/* line 59, ../scss/reboundSports.scss */
+/* line 60, ../scss/reboundSports.scss */
 header.product.product_cleats {
   background-image: url("../images/product_footwear_cleats_header_bg.jpg");
 }
 
-/* line 65, ../scss/reboundSports.scss */
+/* line 70, ../scss/reboundSports.scss */
+div#checkout {
+  height: 38px;
+  min-width: 150px;
+  opacity: 0.9;
+  float: right;
+  margin: 0px 10px;
+  padding: 5px 45px 5px 10px;
+  border: 3px solid #fff;
+  background: #3fa9fa url("../images/ui/cart_30.png") no-repeat calc(100% - 5px) 0px;
+}
+/* line 84, ../scss/reboundSports.scss */
+div#checkout h3 {
+  color: #fff;
+  margin: 0;
+  float: right;
+}
+
+/* line 97, ../scss/reboundSports.scss */
+div.products section {
+  margin: 5px 30px 40px;
+}
+
+/* line 108, ../scss/reboundSports.scss */
 section.filter {
-  margin: 5px 30px;
   border-bottom: 1px solid black;
 }
-/* line 67, ../scss/reboundSports.scss */
+/* line 110, ../scss/reboundSports.scss */
 section.filter h5, section.filter h6 {
   float: left;
 }
-/* line 72, ../scss/reboundSports.scss */
+/* line 115, ../scss/reboundSports.scss */
 section.filter .filter-panel {
   width: 25%;
   min-width: 160px;
   max-width: 300px;
   float: left;
 }
-/* line 74, ../scss/reboundSports.scss */
+/* line 117, ../scss/reboundSports.scss */
 section.filter .filter-panel:first-of-type {
   clear: left;
 }
@@ -60,7 +83,7 @@ section.filter:after {
   clear: both;
 }
 
-/* line 94, ../scss/reboundSports.scss */
+/* line 136, ../scss/reboundSports.scss */
 section.catalogue div.product {
   float: left;
   width: 200px;
@@ -69,20 +92,19 @@ section.catalogue div.product {
   padding: 5px 10px 10px 16px;
   position: relative;
 }
-/* line 104, ../scss/reboundSports.scss */
+/* line 146, ../scss/reboundSports.scss */
 section.catalogue div.product img {
   width: 100%;
 }
-/* line 109, ../scss/reboundSports.scss */
+/* line 151, ../scss/reboundSports.scss */
 section.catalogue div.product .sale {
   color: red;
 }
-/* line 112, ../scss/reboundSports.scss */
+/* line 154, ../scss/reboundSports.scss */
 section.catalogue div.product .sale.banner {
   color: white;
-  background-color: red;
 }
-/* line 119, ../scss/reboundSports.scss */
+/* line 160, ../scss/reboundSports.scss */
 section.catalogue div.product p.sale.banner {
   position: absolute;
   font-weight: bold;
@@ -91,41 +113,55 @@ section.catalogue div.product p.sale.banner {
   margin: 0;
   padding: 5px;
 }
-/* line 129, ../scss/reboundSports.scss */
+/* line 169, ../scss/reboundSports.scss */
+section.catalogue div.product p.sale.banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-width: 30px 30px 0 0;
+  border-style: solid;
+  border-color: #f00 #fff;
+}
+/* line 181, ../scss/reboundSports.scss */
 section.catalogue div.product .cart-counter {
+  min-width: 45px;
+  height: 24px;
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px;
+  padding: 5px 28px 5px 5px;
+  background: url("../images/ui/cart_20_blk.png") no-repeat 80% 4px;
+  text-align: right;
 }
-/* line 137, ../scss/reboundSports.scss */
+/* line 194, ../scss/reboundSports.scss */
 section.catalogue div.product p.name {
   font-size: 12px;
 }
-/* line 142, ../scss/reboundSports.scss */
+/* line 199, ../scss/reboundSports.scss */
 section.catalogue div.product p.price {
   font-size: 18px;
   float: left;
   margin-top: 0;
 }
-/* line 149, ../scss/reboundSports.scss */
+/* line 206, ../scss/reboundSports.scss */
 section.catalogue div.product .original {
   font-size: 12px;
   vertical-align: top;
   text-decoration: line-through;
 }
-/* line 154, ../scss/reboundSports.scss */
+/* line 211, ../scss/reboundSports.scss */
 section.catalogue div.product .original sup {
   font-size: 8px;
   vertical-align: super;
 }
-/* line 161, ../scss/reboundSports.scss */
+/* line 218, ../scss/reboundSports.scss */
 section.catalogue div.product .button {
   width: 80px;
   height: 21px;
   float: right;
 }
-/* line 166, ../scss/reboundSports.scss */
+/* line 223, ../scss/reboundSports.scss */
 section.catalogue div.product .button.add-to-cart {
   color: white;
   background-color: #268cda;
