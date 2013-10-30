@@ -173,8 +173,13 @@
 
             <p class = "name">{{name}}</p> 
             <p class = "numInCart">{{numInCart}}</p>
+            <div class = "add-to-cart button">+</div>
             <div class = "remove-from-cart button">-</div>
-            <p class = "price">{{#if promotion}}<span class = "original">{{{price}}}<span class = "sale">{{{promotionPrice}}}</span>{{else}}<span>{{{price}}}</span>{{/if}}</p></script>
+            <p class = "price">
+            <span class = "{{#if promotion}}promotion{{else}}original{{/if}}">{{#if promotion}}{{{promotionPrice}}}{{else}}{{{price}}}{{/if}}</span>
+            </p>
+
+            </script>
 
              <script type = "text/x-handlebars-template" id = "cartTemplate">
             <div></div>

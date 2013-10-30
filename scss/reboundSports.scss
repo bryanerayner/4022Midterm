@@ -107,7 +107,36 @@ header.product
 			float:right;
 		}
 
+		div.cartProduct
+		{
+			float:left;
+			clear:left;
+			p, div
+			{
+				float:left;
+				margin-left:20px;
+			}
+			
+			.name
+			{
+				width: 60%;
+			}
+			.numInCart
+			{
+				width: 20%;
+			}
+			
 
+			.button
+			{
+				width:20px;
+				height:20px;
+				background-color:cyan;
+				color:white;
+				cursor:pointer;
+			}
+
+		}
 
 	}
 

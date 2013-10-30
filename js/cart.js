@@ -93,6 +93,7 @@ var Product = ProductBase.extend({
 	{
 		ProductBase.prototype.initialize.apply(this, arguments);
 		this.on("addToCart", this.addToCart, this);
+		this.on("removeFromCart", this.removeFromCart, this);
 	},
 
 	addToCart:function()
@@ -206,7 +207,8 @@ var CartProductView = ProductBaseView.extend({
 
 	events:
 	{
-		"click .add-to-cart.button":"addToCart"
+		"click .add-to-cart.button":"addToCart",
+		"click .remove-from-cart.button":"removeFromCart"
 	},
 
 	initialize:function()
@@ -218,8 +220,9 @@ var CartProductView = ProductBaseView.extend({
 	{
 		var numInCart = this.model.get("numInCart");
 		if (numInCart > 0)
-		{
+		{			
 			this.$el.show();
+			this.$(".numInCart").text(numInCart);
 		}else
 		{
 			this.$el.hide();
@@ -229,6 +232,11 @@ var CartProductView = ProductBaseView.extend({
 	addToCart:function()
 	{
 		this.model.trigger("addToCart");
+	},
+
+	removeFromCart:function()
+	{
+		this.model.trigger("removeFromCart");
 	},
 	onRender:function()
 	{
