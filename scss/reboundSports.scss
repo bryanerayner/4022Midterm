@@ -80,6 +80,26 @@ header.product
 
 		background:#3fa9fa url("../images/ui/cart_30.png") no-repeat calc(100% - 5px) 0px;
 
+		#cartContainer
+		{
+			position: relative;
+			display: block;
+			width: auto;
+			height: 48px;
+		}
+
+		#cart
+		{
+			display: block;
+			position: absolute;
+			top: 32px;
+			right: -48px;
+			width: 350%;
+			background-color: lightblue;
+			max-width: 550px;
+
+		}
+
 		h3
 		{
 			color:#fff;
