@@ -158,8 +158,10 @@
                 <p class="price {{#if promotion}}promotion{{/if}}">
                 {{#if promotion}}
                     <span class="sale">{{{promotionPrice}}}</span>
-                {{/if}}
-                    <span class="original">{{{price}}}</span>
+                    <span class="original">
+                    {{else}}
+                    <span>
+                {{/if}}{{{price}}}</span>
                 </p>
 
                 <div class="add-to-cart button">
@@ -168,8 +170,11 @@
             </script>
 
              <script type = "text/x-handlebars-template" id = "cartProductTemplate">
-            <div>{{name}} {{numInCart}}</div>
-            </script>
+
+            <p class = "name">{{name}}</p> 
+            <p class = "numInCart">{{numInCart}}</p>
+            <div class = "remove-from-cart button">-</div>
+            <p class = "price">{{#if promotion}}<span class = "original">{{{price}}}<span class = "sale">{{{promotionPrice}}}</span>{{else}}<span>{{{price}}}</span>{{/if}}</p></script>
 
              <script type = "text/x-handlebars-template" id = "cartTemplate">
             <div></div>

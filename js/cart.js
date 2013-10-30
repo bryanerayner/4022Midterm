@@ -6,6 +6,36 @@ var CartRegion = Backbone.Marionette.Region.extend({
 	{
 		this.$el.find("#cart").remove();
 		this.$el.append(view.$el);
+		this.$el.off("click").on("click", function(e){
+
+			//We only want to open the shopping cart if you click on the button.
+			//Prevent everything except for what we explicitly want.
+			var trigger = false;
+			var $target = $(e.target);
+			if($target.is("h3"))
+			{
+				trigger = true;
+			}
+			var classes = [];
+			var ids = ["cartContainer", "checkout"];
+			_.each(classes, function(className){
+				if ($target.hasClass(className))
+				{
+					trigger = true;
+				}
+			});
+			_.each(ids, function(id){
+				if ($target.attr("id") == id)
+				{
+					trigger = true;
+				}
+			});
+
+			if (trigger)
+			{
+				ReboundSports.vent.trigger("click:#checkout");
+			}
+		});
 	}
 });
 
@@ -108,7 +138,28 @@ var Inventory = Backbone.Collection.extend(
 });
 
 
-var ProductView = Backbone.Marionette.ItemView.extend({
+var ProductBaseView = Backbone.Marionette.ItemView.extend(
+{
+		//Format the model to be displayed correctly.
+	serializeData:function()
+	{
+		//Make the prices formatted correctly here.
+		var data = _.clone(this.model.attributes);
+
+		var prices = ["price","promotionPrice"];
+		_.each(prices, function(price)
+		{
+			if (data[price])
+			{
+				data[price] = formatPrice(data[price]);
+			}
+		});
+
+		return data;
+	}
+})
+
+var ProductView = ProductBaseView.extend({
 	template:Handlebars.compile( $("#productTemplate").html()),
 	tagName:"div",
 	className:"product",
@@ -145,26 +196,10 @@ var ProductView = Backbone.Marionette.ItemView.extend({
 		}
 	},
 
-	//Format the model to be displayed correctly.
-	serializeData:function()
-	{
-		//Make the prices formatted correctly here.
-		var data = _.clone(this.model.attributes);
 
-		var prices = ["price","promotionPrice"];
-		_.each(prices, function(price)
-		{
-			if (data[price])
-			{
-				data[price] = formatPrice(data[price]);
-			}
-		});
-
-		return data;
-	}
 });
 
-var CartProductView = Backbone.Marionette.ItemView.extend({
+var CartProductView = ProductBaseView.extend({
 	template:Handlebars.compile( $("#cartProductTemplate").html()),
 	tagName:"div",
 	className:"cartProduct",
@@ -220,19 +255,33 @@ var ShoppingCartView = Backbone.Marionette.CollectionView.extend(
 	itemView:CartProductView,
 
 	events:{
-		"click":"toggleExpanded"
+		"click #cart":"preventDefault",
 	},
+
 
 	initialize:function()
 	{
 		_.extend(this,{
-			expanded:false
+			expanded:false,
+			preventDefault:false
 		});
+		ReboundSports.vent.on("click:#checkout", this.toggleExpanded, this);
 		this.listenTo(this.collection, "after:updateCartTotal", this.updateCartTotal);
 	},
-
-	toggleExpanded:function()
+	preventDefault:function(e)
 	{
+		this.preventDefault = true;
+		e.preventDefault();
+		e.stopPropagation();
+	},
+
+	toggleExpanded:function(e)
+	{
+		if (this.preventDefault)
+		{
+			this.preventDefault = false;
+			return;
+		}
 		this.expanded = !!!this.expanded;
 		this.updateExpanded();
 	},
