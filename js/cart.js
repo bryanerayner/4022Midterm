@@ -1,3 +1,64 @@
+//Animate a div to fade vertically.
+
+function fade($el, pDelta, duration)
+{
+	var len = duration || 300;
+	var delta = pDelta || 40
+
+	//First ensure that all the parents of this element are visible. If not, stop
+	//before we start
+	var $parents = $el.parents();
+	if ($parents.is(":hidden"))
+	{
+		return;
+	}
+
+
+	var $clone = $el.clone();
+	var docPosition = $el.offset();
+
+	//Properly position this div underneath other ones potentially sitting on top of it.
+	var highestZIndex = _.max($parents, function(div){
+		var z = $(div).css("z-index");
+		if (z == "auto"){return 0;}
+		return parseInt(z);
+	});
+
+	$clone.css("z-index", $(highestZIndex).css("zIndex"));
+
+
+	$clone.offset(docPosition);
+	$clone.css(
+		{"position":"absolute"}
+		);
+	$clone.appendTo("body");
+	_.defer(function(){
+		$clone.addClass("animate-fade");
+		$clone.css({
+			"zoom":1,
+			"opacity":0,
+			"-moz-opacity":0,
+		});
+		$clone.offset({left:docPosition.left, top:docPosition.top - delta});
+	});
+	_.delay(function(){
+		$clone.remove()
+	}, len);
+}
+
+function fadeUp($el, ammount)
+{
+	fade($el, ammount);
+}
+function fadeDown($el, ammount)
+{
+	fade($el, -ammount)
+}
+
+
+
+
+
 var ReboundSports = new Backbone.Marionette.Application();
 
 var CartRegion = Backbone.Marionette.Region.extend({
@@ -67,12 +128,19 @@ var ProductBase = Backbone.Model.extend(
 			price: 0,
 			promotion:false,
 			promotionPrice: 0,
-			numInCart:0
+			numInCart:0,
+			totalPrice:0
 		}
 	},
 	initialize:function()
 	{
 		this.on("change:price change:promotion change:promotionPrice", this.updateActualPrice, this);
+		this.on("change:numInCart", this.updateTotalPrice, this);
+		this.updateActualPrice();
+	},
+	updateTotalPrice:function()
+	{
+		this.set("totalPrice", this.get("actualPrice")*this.get("numInCart"));
 	},
 	updateActualPrice:function()
 	{
@@ -147,7 +215,7 @@ var ProductBaseView = Backbone.Marionette.ItemView.extend(
 		//Make the prices formatted correctly here.
 		var data = _.clone(this.model.attributes);
 
-		var prices = ["price","promotionPrice"];
+		var prices = ["price","promotionPrice","totalPrice"];
 		_.each(prices, function(price)
 		{
 			if (data[price])
@@ -157,6 +225,16 @@ var ProductBaseView = Backbone.Marionette.ItemView.extend(
 		});
 
 		return data;
+	},
+
+	fadeNumInCart:function($cartCounter)
+	{
+		var fadeDelta = -40;
+		if (this.model.get("numInCart") > this.model.previous("numInCart"))
+		{
+			fadeDelta = fadeDelta * -1;
+		}
+		fade($cartCounter, fadeDelta);
 	}
 })
 
@@ -173,6 +251,7 @@ var ProductView = ProductBaseView.extend({
 	initialize:function()
 	{
 		this.listenTo(this.model, "change:numInCart", this.updateCartNum);
+		this.oldNumInCart = 0;
 	},
 
 	addToCart:function()
@@ -185,7 +264,12 @@ var ProductView = ProductBaseView.extend({
 		var $cartCounter = this.$(".cart-counter");
 		var $addToCartButton = this.$(".add-to-cart.button");
 		var numInCart = this.model.get("numInCart");
+
+		this.fadeNumInCart($cartCounter.find("span"));
+
 		$cartCounter.find("span").html(numInCart);
+
+
 		if (numInCart > 0)
 		{
 			$cartCounter.show();
@@ -195,6 +279,7 @@ var ProductView = ProductBaseView.extend({
 			$cartCounter.hide();
 			$addToCartButton.text("Add To Cart");
 		}
+
 	},
 
 
@@ -219,10 +304,13 @@ var CartProductView = ProductBaseView.extend({
 	updateNumInCart:function()
 	{
 		var numInCart = this.model.get("numInCart");
+		var me = this;
 		if (numInCart > 0)
 		{			
 			this.$el.show();
+			this.fadeNumInCart(this.$(".numInCart"));
 			this.$(".numInCart").text(numInCart);
+			this.$(".total").html(formatPrice(this.model.get("totalPrice")));
 		}else
 		{
 			this.$el.hide();
@@ -297,6 +385,10 @@ var ShoppingCartView = Backbone.Marionette.CollectionView.extend(
 	onRender:function()
 	{
 		this.$el.prepend("<h3>Shopping Cart</h3>");
+		this.$el.find("#cart").append('<div class = "checkoutTotal"><h4 class = "col-7-8">Cart Total:</h4><p class = "total col-1-8">0<sup>00</sup></p></div><div class = "checkout button">Checkout</div>');
+
+		this.$el.find("#cart").addClass("slide-in-bottom");
+
 		this.delegateEvents(this.events);
 		this.updateCartTotal();
 		this.updateExpanded();
@@ -304,6 +396,11 @@ var ShoppingCartView = Backbone.Marionette.CollectionView.extend(
 
 	updateExpanded:function()
 	{
+
+		var me = this;
+		var show = false;
+
+ 
 		if (this.expanded)
 		{
 			if (this.collection.cartTotalNum == 0)
@@ -311,12 +408,40 @@ var ShoppingCartView = Backbone.Marionette.CollectionView.extend(
 				this.toggleExpanded();
 				return;
 			}
-			this.$("#cart").show();
+
+			show = true;
+
+			
 		}else
 		{
-			this.$("#cart").hide();
+			
+			
 		}
+
+		this.toggleDisplay(show, this);
 	},
+
+	toggleDisplay: _.throttle(function(showHide, ctx)
+	{
+		var $cart = ctx.$("#cart");
+		if (showHide)
+		{
+			if (ctx.hidePtr)
+			{
+				window.clearTimeout(ctx.hidePtr);
+			}
+			$cart.show();
+			_.defer(function(){$cart.addClass("show");});
+			
+		}
+		else
+		{
+			$cart.removeClass("show");
+			ctx.hidePtr = window.setTimeout(function(){
+				$cart.hide();
+			}, 500);
+		}
+	}, 200),
 
 	updateCartTotal:function()
 	{
@@ -326,9 +451,12 @@ var ShoppingCartView = Backbone.Marionette.CollectionView.extend(
 		var $checkoutH3 = this.$("h3");
 		if (productsInCart > 0)
 		{
+			$("#checkout").addClass("show");
 			$checkoutH3.text("Checkout " + productsInCart + " items");
+			this.$(".checkoutTotal .total").html(formatPrice(totalPrice));
 		}else
 		{
+			$("#checkout").removeClass("show");
 			$checkoutH3.text("Shopping Cart");
 			this.expanded = false;
 			this.updateExpanded();
@@ -372,9 +500,8 @@ var inventory = new Inventory([
 		gender: "Men",
 		name:"Adidas 11 Pro Adipure Cleat",
 		imgSrc:"images/products/adidas_mens_adipure_11Pro_trx_fg_cleats.jpg",
-		price: 123,
-		promotion:true,
-		promotionPrice: 12.12
+		price: 89.99,
+		promotion:false
 	},
 	{
 		id:2,
@@ -383,9 +510,9 @@ var inventory = new Inventory([
 		gender: "Men",
 		name:"Adidas F30 Messi TRX Cleat",
 		imgSrc:"images/products/adidas_mens_f30_trx_fg_Messi.jpg",
-		price: 123,
+		price: 150.33,
 		promotion:true,
-		promotionPrice: 12.12
+		promotionPrice: 119.98
 	},
 	{
 		id:3,
@@ -394,20 +521,19 @@ var inventory = new Inventory([
 		brandName:"Adidas",
 		name:"Adidas F50 Adizero TRX Cleat",
 		imgSrc:"images/products/adidas_mens_f50_adizero_trx_fg_cleats.jpg",
-		price: 123,
+		price: 75.99,
 		promotion:true,
-		promotionPrice: 12.12
+		promotionPrice: 60.95
 	},
 	{
 		id:4,
 		colors:["black", "green"],
 		gender: "Men",
 		brandName:"Adidas",
-		name:"Adidas Predator Absolado LZ Cleat",
+		name:"Adidas Predator LZ Cleat",
 		imgSrc:"images/products/adidas_mens_predator_absolado_lz_trx_fg_soccer_cleats_green.jpg",
-		price: 123,
-		promotion:true,
-		promotionPrice: 12.12
+		price: 65.99,
+		promotion:false
 	},
 	{
 		id:5,
@@ -416,9 +542,8 @@ var inventory = new Inventory([
 		brandName:"Adidas",
 		name:"Adidas Predator Absolado TRX FG Cleat",
 		imgSrc:"images/products/adidas_mens_predator_absolado_lz_trx_fg_soccer_cleats_yellow.jpg",
-		price: 123,
-		promotion:true,
-		promotionPrice: 12.12
+		price: 65.99,
+		promotion:false
 	},
 	{
 		id:6,
@@ -427,9 +552,8 @@ var inventory = new Inventory([
 		brandName:"Adidas",
 		name:"Adidas F5 TRX FG Cleat",
 		imgSrc:"images/products/adidas_womens_f5_trx_fg_soccer_cleat.jpg",
-		price: 123,
-		promotion:true,
-		promotionPrice: 12.12
+		price: 65.99,
+		promotion:false
 	},
 	{
 		id:7,
@@ -438,9 +562,8 @@ var inventory = new Inventory([
 		brandName:"New Balance",
 		name:"New Balance 5464 Cleat",
 		imgSrc:"images/products/new_balance_5464_lacrosse_cleats_men.jpg",
-		price: 123,
-		promotion:true,
-		promotionPrice: 12.12
+		price: 48.95,
+		promotion:false
 	},
 	{
 		id:8,
@@ -449,9 +572,9 @@ var inventory = new Inventory([
 		brandName:"New Balance",
 		name:"New Balance MB4040 Cleat",
 		imgSrc:"images/products/new_balance_mb4040_d_width_low_cut_baseball_cleats_men.jpg",
-		price: 123,
+		price: 50.54,
 		promotion:true,
-		promotionPrice: 12.12
+		promotionPrice: 39.99
 	},
 	{
 		id:9,
@@ -460,9 +583,8 @@ var inventory = new Inventory([
 		brandName:"Nike",
 		name:"Nike Hypervenom Phelon Cleat",
 		imgSrc:"images/products/nike_hypervenom_phelon_fg_outdoor_soccer_cleats_mens.jpg",
-		price: 123,
-		promotion:true,
-		promotionPrice: 12.12
+		price: 130.44,
+		promotion:false
 	},
 	{
 		id:10,
@@ -471,17 +593,45 @@ var inventory = new Inventory([
 		brandName:"Nike",
 		name:"Nike Mercurial Victory II Cleat",
 		imgSrc:"images/products/nike_mercurial_victory_II_fg_soccer_cleats_mens.jpg",
-		price: 123,
-		promotion:true,
-		promotionPrice: 12.12
+		price: 120.99,
+		promotion:false
 	}
 	]);
 
 console.log(inventory);
 
+
+
+
+
 $(document).ready(function(){
 	ReboundSports.start({inventory:inventory});
 
+
+
+
+	$(window).scroll( function(e){
+		var maxHeight = $("body .products").height();
+		var scrollTop = $(window).scrollTop();
+		var navHeight = $("nav.left").height();
+		var maxMinNavNeight = maxHeight - navHeight;
+		var $mainNav = $(".MainNav");
+		if (scrollTop > 0)
+		{
+		if ($(window).scrollTop() < maxMinNavNeight)
+		{
+		$mainNav.css("margin-top", Math.min($(window).scrollTop(),maxHeight));
+		}else
+		{
+			$mainNav.css("margin-top", maxMinNavNeight);
+			e.preventDefault();
+		}
+		}else
+		{
+			$mainNav.css("margin-top", "0");
+		}
+	});
+	
 
 
 });

@@ -74,14 +74,16 @@
         </div>
 
         <div class="products grid flex noClear left">
-            <header class="product product_cleats">
+            <header class="effeckts product product_cleats">
                 <h1>Footwear - Cleats</h1>
-                <div id="checkout">
+                <div id="checkout" class = "from-below-to-below">
                     
                 </div>
             </header>
 
+
             <section class="filter">
+<!--
                 <h5 class = "dropdown-arrow is-right">Refine Results:</h5>
 
                 <div class="filter-panel">
@@ -109,10 +111,10 @@
                     </div>
                 </div>
 
+-->
             </section>
 
-
-            <section class="catalogue" id = "products">
+            <section class="catalogue clearfix" id = "products">
                 
                 
 
@@ -146,7 +148,7 @@
 
             <script type = "text/x-handlebars-template" id = "productTemplate">
             {{#if promotion}}
-                <p class="sale banner">Sale</p>
+                <p class="sale banner"><span>Sale</span></p>
             {{/if}}
                 <div class="cart-counter" style = "display:none;">
                     <span></span>
@@ -171,13 +173,17 @@
 
              <script type = "text/x-handlebars-template" id = "cartProductTemplate">
 
-            <p class = "name">{{name}}</p> 
-            <p class = "numInCart">{{numInCart}}</p>
-            <div class = "add-to-cart button">+</div>
-            <div class = "remove-from-cart button">-</div>
-            <p class = "price">
+            <p class = "col-1-2 name">{{name}}</p>             
+
+            <p class = "col-1-8 price">
             <span class = "{{#if promotion}}promotion{{else}}original{{/if}}">{{#if promotion}}{{{promotionPrice}}}{{else}}{{{price}}}{{/if}}</span>
             </p>
+            <div class = "col-2-8">
+            <div class = "remove-from-cart button">-</div>
+            <p class = "numInCart">{{numInCart}}</p>
+            <div class = "add-to-cart button">+</div>
+            </div>
+            <p class = "col-1-8 total {{#if promotion}}promotion{{/if}}">{{{totalPrice}}}</p>
 
             </script>
 
