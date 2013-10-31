@@ -37,6 +37,12 @@
 }
 
 
+html body div.products.grid.flex
+{
+	max-width:1024px;
+	max-width:calc(100%);
+}
+
 .grid.flex
 {
 	width: calc(100% - 250px);
