@@ -66,6 +66,8 @@ header.product
 
 
 }
+
+
 	#checkout
 	{
 		height:38px;
@@ -73,17 +75,15 @@ header.product
 		position: relative;
 		z-index: 30;
 
-		&.show
-		{
-			opacity: 0.98;
-		}
+		
+		cursor:pointer;
 
 		float:right;
 		margin: 0px 10px;
 		padding: 5px 45px 5px 10px;
 		border: 3px solid #fff;
 
-		background:#3fa9fa url("../images/ui/cart_30.png") no-repeat calc(100% - 5px) 0px;
+		background:rgba(63, 169, 250, 0.9) url("../images/ui/cart_30.png") no-repeat calc(100% - 5px) 0px;
 
 		#cartContainer
 		{
@@ -95,6 +95,7 @@ header.product
 
 		#cart
 		{
+			cursor:default;
 			display: block;
 			position: absolute;
 			top: 32px;

@@ -363,6 +363,19 @@ var ShoppingCartView = Backbone.Marionette.CollectionView.extend(
 		});
 		ReboundSports.vent.on("click:#checkout", this.toggleExpanded, this);
 		this.listenTo(this.collection, "after:updateCartTotal", this.updateCartTotal);
+		var me = this;
+		//Clicks away hide this div.
+		$(document).on("mouseup",function (e)
+		{
+		    var container = $("#checkout").add(".button");
+
+		    if (!container.is(e.target) // if the target of the click isn't the container...
+		        && container.has(e.target).length === 0) // ... nor a descendant of the container
+		    {
+		        me.expanded = false;
+		        me.updateExpanded();
+		    }
+		});
 	},
 	preventDefault:function(e)
 	{
