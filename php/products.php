@@ -14,7 +14,7 @@ $mySelect = "SELECT * FROM products";
 $productsStatement = $link->query($mySelect);
 $productsStatement->execute();
 
-$products = $productsStatement->fetchAll();
+$products = $productsStatement->fetchAll(PDO::FETCH_ASSOC);
 
 
 header('Content-Type: application/json');
@@ -23,8 +23,17 @@ header('Content-Type: application/json');
 foreach ($products as $key => $product) {
 	$stringSrc = $product["product_colors"];
 	$stringSrc = str_replace('"', '', $stringSrc);
-	$arr = explode(",", $stringSrc);	
+	$arr = explode(",", $stringSrc);
 	unset($products[$key]['product_colors']);
+	if ($product["promotion_active"])
+	{
+		unset($products[$key]['promotion_active']);
+		$products[$key]['promotion_active'] = true;
+	}else
+	{
+		unset($products[$key]['promotion_active']);
+		$products[$key]['promotion_active'] = false;
+	}
 	$products[$key]['product_colors'] = $arr;
 }
 

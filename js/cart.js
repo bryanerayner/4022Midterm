@@ -580,7 +580,7 @@ $(document).ready(function(){
 	ReboundSports.start({inventory:inventory});
 
 	inventory.fetch();
-
+	console.log(inventory);
 
 	$(window).scroll( function(e){
 		var maxHeight = $("body .products").height();
