@@ -7,8 +7,11 @@ function get($link)
 {
 
 
+// Localhost
+// $mySelect = "SELECT * FROM products";
 
-$mySelect = "SELECT * FROM products";
+// Edumedia.ca
+ $mySelect = "SELECT * FROM ajaxcart_products";
 
 
 $productsStatement = $link->query($mySelect);
