@@ -115,9 +115,70 @@ function formatPrice(price)
 	return "$"+integer+"<sup>"+decimals+"</sup>";
 }
 
+function transformKeys(data, keyMap, direction)
+{
+	var transformMap = _.clone(keyMap);
+	if (direction == "inverse")
+	{
+		transformMap = _.invert(transformMap);
+	}
+	var transform = _.extend({}, data);
+		_.each(transformMap, function(value, key){
+			transform[value] = transform[key];
+			delete transform[key];
+		});
+	return transform;
+}
+
 
 var ProductBase = Backbone.Model.extend(
 {
+
+	url:"php/products.php",
+
+	keyMap:
+	{
+		"product_id":"id",
+		"product_name":"name",
+		"product_colors":"colors",
+		"brand_name":"brandName",
+		"product_image":"imgSrc",
+		"product_price":"price",
+		"promotion_price":"promotionPrice",
+		"promotion_active":"promotion",
+		"product_gender":"gender"
+	},
+
+	parse:function(response)
+	{
+		
+		var transform = transformKeys(response, this.keyMap);
+
+		transform["imgSrc"] = "images/products/" + transform["imgSrc"];
+
+		return transform;
+	},
+
+	serialize:function()
+	{
+		var data = _.clone(this.attributes);
+		data["imgSrc"] = data["imgSrc"].replace("images/products", "");
+		var transform = transformKeys(this.attributes, this.keyMap, "inverse");
+		return transform;
+	},
+
+	sync: function(method, model, options) {
+	  if (method !== 'read' && method !== 'destroy') {
+	    options.data = model.serialize();
+	  }
+	  return Backbone.sync(method, model, options);
+	},
+
+	toJSON:function()
+	{
+
+	},
+
 	defaults:function()
 	{
 		return{
@@ -126,6 +187,7 @@ var ProductBase = Backbone.Model.extend(
 			name:"",
 			imgSrc:"",
 			price: 0,
+			gender:"",
 			promotion:false,
 			promotionPrice: 0,
 			numInCart:0,
@@ -183,6 +245,7 @@ var Product = ProductBase.extend({
 
 var Inventory = Backbone.Collection.extend(
 {
+	url:"php/products.php",
 	model:Product,
 	cartTotalNum: 0,
 	cartTotalPrice: 0,
@@ -505,113 +568,9 @@ ReboundSports.addInitializer(function(options){
 //View for inventory
 
 
-var inventory = new Inventory([
-	{
-		id:1,
-		colors:["black"],
-		brandName:"Adidas",
-		gender: "Men",
-		name:"Adidas 11 Pro Adipure Cleat",
-		imgSrc:"images/products/adidas_mens_adipure_11Pro_trx_fg_cleats.jpg",
-		price: 89.99,
-		promotion:false
-	},
-	{
-		id:2,
-		colors:["red", "blue"],
-		brandName:"Adidas",
-		gender: "Men",
-		name:"Adidas F30 Messi TRX Cleat",
-		imgSrc:"images/products/adidas_mens_f30_trx_fg_Messi.jpg",
-		price: 150.33,
-		promotion:true,
-		promotionPrice: 119.98
-	},
-	{
-		id:3,
-		colors:["purple", "pink", "blue"],
-		gender: "Men",
-		brandName:"Adidas",
-		name:"Adidas F50 Adizero TRX Cleat",
-		imgSrc:"images/products/adidas_mens_f50_adizero_trx_fg_cleats.jpg",
-		price: 75.99,
-		promotion:true,
-		promotionPrice: 60.95
-	},
-	{
-		id:4,
-		colors:["black", "green"],
-		gender: "Men",
-		brandName:"Adidas",
-		name:"Adidas Predator LZ Cleat",
-		imgSrc:"images/products/adidas_mens_predator_absolado_lz_trx_fg_soccer_cleats_green.jpg",
-		price: 65.99,
-		promotion:false
-	},
-	{
-		id:5,
-		colors:["black", "yellow"],
-		gender: "Men",
-		brandName:"Adidas",
-		name:"Adidas Predator Absolado TRX FG Cleat",
-		imgSrc:"images/products/adidas_mens_predator_absolado_lz_trx_fg_soccer_cleats_yellow.jpg",
-		price: 65.99,
-		promotion:false
-	},
-	{
-		id:6,
-		colors:["purple", "white"],
-		gender: "Women",
-		brandName:"Adidas",
-		name:"Adidas F5 TRX FG Cleat",
-		imgSrc:"images/products/adidas_womens_f5_trx_fg_soccer_cleat.jpg",
-		price: 65.99,
-		promotion:false
-	},
-	{
-		id:7,
-		colors:["black", "white"],
-		gender: "Men",
-		brandName:"New Balance",
-		name:"New Balance 5464 Cleat",
-		imgSrc:"images/products/new_balance_5464_lacrosse_cleats_men.jpg",
-		price: 48.95,
-		promotion:false
-	},
-	{
-		id:8,
-		colors:["gray", "white"],
-		gender: "Men",
-		brandName:"New Balance",
-		name:"New Balance MB4040 Cleat",
-		imgSrc:"images/products/new_balance_mb4040_d_width_low_cut_baseball_cleats_men.jpg",
-		price: 50.54,
-		promotion:true,
-		promotionPrice: 39.99
-	},
-	{
-		id:9,
-		colors:["orange", "black"],
-		gender: "Men",
-		brandName:"Nike",
-		name:"Nike Hypervenom Phelon Cleat",
-		imgSrc:"images/products/nike_hypervenom_phelon_fg_outdoor_soccer_cleats_mens.jpg",
-		price: 130.44,
-		promotion:false
-	},
-	{
-		id:10,
-		colors:["orange", "black"],
-		gender: "Men",
-		brandName:"Nike",
-		name:"Nike Mercurial Victory II Cleat",
-		imgSrc:"images/products/nike_mercurial_victory_II_fg_soccer_cleats_mens.jpg",
-		price: 120.99,
-		promotion:false
-	}
-	]);
+var inventory = new Inventory([]);
 
-console.log(inventory);
+
 
 
 
@@ -620,7 +579,7 @@ console.log(inventory);
 $(document).ready(function(){
 	ReboundSports.start({inventory:inventory});
 
-
+	inventory.fetch();
 
 
 	$(window).scroll( function(e){
