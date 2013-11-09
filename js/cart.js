@@ -460,6 +460,16 @@ var ShoppingCartView = Backbone.Marionette.CollectionView.extend(
 
 	onRender:function()
 	{
+		if (this.$el.find("#cart").length < 1)
+		{
+			//If the cart isn't added yet, defer this call until later.
+			var args = arguments;
+			var me = this;
+			_.defer(function(){
+				me.onRender.apply(me, arguments);
+			});
+			return;
+		}
 		this.$el.prepend("<h3>Shopping Cart</h3>");
 		this.$el.find("#cart").append('<div class = "checkoutTotal"><h4 class = "col-7-8">Cart Total:</h4><p class = "total col-1-8">0<sup>00</sup></p></div><div class = "checkout button">Checkout</div>');
 
@@ -579,7 +589,7 @@ var inventory = new Inventory([]);
 $(document).ready(function(){
 	ReboundSports.start({inventory:inventory});
 
-	inventory.fetch();
+	_.defer(function(){inventory.fetch();});
 	console.log(inventory);
 
 	$(window).scroll( function(e){
