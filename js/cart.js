@@ -115,76 +115,15 @@ function formatPrice(price)
 	return "$"+integer+"<sup>"+decimals+"</sup>";
 }
 
-function transformKeys(data, keyMap, direction)
-{
-	var transformMap = _.clone(keyMap);
-	if (direction == "inverse")
-	{
-		transformMap = _.invert(transformMap);
-	}
-	var transform = _.extend({}, data);
-		_.each(transformMap, function(value, key){
-			transform[value] = transform[key];
-			delete transform[key];
-		});
-	return transform;
-}
 
 var ProductBase = Backbone.Model.extend(
 {
-
-	url:"php/products.php",
-
-	keyMap:
-	{
-		"product_id":"id",
-		"product_name":"name",
-		"product_colors":"colors",
-		"brand_name":"brandName",
-		"product_image":"imgSrc",
-		"product_price":"price",
-		"promotion_price":"promotionPrice",
-		"promotion_active":"promotion",
-		"product_gender":"gender"
-	},
-
-	parse:function(response)
-	{
-		
-		var transform = transformKeys(response, this.keyMap);
-
-		transform["imgSrc"] = "images/products/" + transform["imgSrc"];
-
-		return transform;
-	},
-
-	serialize:function()
-	{
-		var data = _.clone(this.attributes);
-		data["imgSrc"] = data["imgSrc"].replace("images/products", "");
-		var transform = transformKeys(this.attributes, this.keyMap, "inverse");
-		return transform;
-	},
-
-	sync: function(method, model, options) {
-	  if (method !== 'read' && method !== 'destroy') {
-	    options.data = model.serialize();
-	  }
-	  return Backbone.sync(method, model, options);
-	},
-
-	toJSON:function()
-	{
-
-	},
-
 	defaults:function()
 	{
 		return{
 			colors:[],
 			brandName:"",
 			name:"",
-			gender:"",
 			imgSrc:"",
 			price: 0,
 			promotion:false,
@@ -244,8 +183,6 @@ var Product = ProductBase.extend({
 
 var Inventory = Backbone.Collection.extend(
 {
-	url:"php/products.php",
-
 	model:Product,
 	cartTotalNum: 0,
 	cartTotalPrice: 0,
@@ -566,8 +503,9 @@ ReboundSports.addInitializer(function(options){
 
 
 //View for inventory
-/*
 
+
+var inventory = new Inventory([
 	{
 		id:1,
 		colors:["black"],
@@ -671,12 +609,9 @@ ReboundSports.addInitializer(function(options){
 		price: 120.99,
 		promotion:false
 	}
-*/
-
-var inventory = new Inventory([
 	]);
 
-
+console.log(inventory);
 
 
 
@@ -685,7 +620,7 @@ var inventory = new Inventory([
 $(document).ready(function(){
 	ReboundSports.start({inventory:inventory});
 
-	inventory.fetch();
+
 
 
 	$(window).scroll( function(e){
@@ -713,5 +648,15 @@ $(document).ready(function(){
 
 
 });
+
+
+
+
+
+
+
+
+
+
 
 
