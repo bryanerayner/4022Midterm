@@ -4,6 +4,86 @@
 		"selected_items":
 		[
 			[
+				"pos",
+				"pos:a	position:absolute"
+			],
+			[
+				"trans",
+				"transform"
+			],
+			[
+				"fade",
+				"fade($el, pDelta, duration)"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"mari",
+				"margin-top"
+			],
+			[
+				"sco",
+				"scrollTop"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"Produ",
+				"ProductBaseView	(?)"
+			],
+			[
+				"Prod",
+				"ProductBaseView	(?)"
+			],
+			[
+				"udp",
+				"updateExpanded"
+			],
+			[
+				"collec",
+				"collectionView	(?)"
+			],
+			[
+				"pro",
+				"productsInCart	(?)"
+			],
+			[
+				"cartTotal",
+				"cartTotalPrice	(num)"
+			],
+			[
+				"prom",
+				"promotionPrice"
+			],
+			[
+				"promotio",
+				"promotionPrice"
+			],
+			[
+				"promo",
+				"promotion"
+			],
+			[
+				"prot",
+				"prototype	(?)"
+			],
+			[
+				"Shopp",
+				"ShoppingCartView	(?)"
+			],
+			[
+				"inven",
+				"inventoryView	(?)"
+			],
+			[
+				"Inven",
+				"InventoryView	(?)"
+			],
+			[
 				"back",
 				"background-image"
 			],
@@ -86,10 +166,6 @@
 			[
 				"E",
 				"Empty"
-			],
-			[
-				"pro",
-				"prototype"
 			],
 			[
 				"te",
@@ -216,18 +292,26 @@
 	"buffers":
 	[
 		{
-			"file": "index.html",
+			"file": "scss/reboundSports.scss",
 			"settings":
 			{
-				"buffer_size": 5850,
+				"buffer_size": 5268,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "scss/reboundSports.scss",
+			"file": "js/cart.js",
 			"settings":
 			{
-				"buffer_size": 2432,
+				"buffer_size": 13262,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 7912,
 				"line_ending": "Unix"
 			}
 		}
@@ -300,6 +384,9 @@
 	},
 	"file_history":
 	[
+		"/Users/bryanerayner/GitHub/Servant.scss/scss/servant/components/_nav.scss",
+		"/Users/bryanerayner/GitHub/Servant.scss/scss/servant/components/_global.scss",
+		"/Users/bryanerayner/GitHub/Servant.scss/scss/servant/_variables.scss",
 		"/Applications/MAMP/htdocs/php/4057_dynamic_scripting/midterm/images/Cupcake.png",
 		"/Applications/MAMP/htdocs/php/4057_dynamic_scripting/midterm/partials/nav.php",
 		"/Applications/MAMP/htdocs/php/4057_dynamic_scripting/midterm/partials/header.php",
@@ -336,6 +423,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"30px",
+			"display:none",
+			">\n",
+			"hidePtr",
+			"className",
+			"updateNumIn",
+			"fadeNumIn",
+			"defer",
+			"numInCart",
+			"fadeUp",
+			"if",
+			"17px",
+			";\n",
+			"button",
+			"onRender",
+			"CartProductView",
+			"20px",
+			"		\n",
+			">\n",
+			"colors:[",
+			"colors",
+			"			\n",
+			"		\n",
+			"promotionPrice:",
 			"75",
 			"1",
 			"000",
@@ -440,51 +551,23 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
-					"settings":
-					{
-						"buffer_size": 5850,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3132,
-								3132
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 726.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "scss/reboundSports.scss",
 					"settings":
 					{
-						"buffer_size": 2432,
+						"buffer_size": 5268,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1498,
-								1498
+								0,
+								0
 							]
 						],
 						"settings":
@@ -493,7 +576,34 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1917.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/cart.js",
+					"settings":
+					{
+						"buffer_size": 13262,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7049,
+								7049
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5141.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -503,6 +613,78 @@
 		{
 			"sheets":
 			[
+				{
+					"buffer": 2,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 7912,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								835,
+								835
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 128.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
